@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 1: The Rise of Conservatism & The 1980s</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Merriweather -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1e293b',
+            crimson: '#b91c1c',
+            civicBlue: '#1d4ed8',
+            offWhite: '#f8fafc',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Merriweather', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Smooth transitions */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Flashcard flip styling */
+    .flashcard-inner {
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+    }
+    .flashcard.flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+    .flashcard-front, .flashcard-back {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .flashcard-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Print Styles for Turn-In Report */
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #tab-report {
+        display: block !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+      .page-break-inside-avoid {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Toast Notification Banner (Replaces alert) -->
+  <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden transform transition-all duration-300 translate-y-2 opacity-0 no-print">
+    <div class="bg-navy text-white px-5 py-3.5 rounded-xl shadow-xl border border-slate-700 flex items-center gap-3 max-w-md">
+      <i id="toast-icon" class="fas fa-check-circle text-emerald-400 text-lg"></i>
+      <span id="toast-message" class="text-sm font-medium">Action completed!</span>
+    </div>
+  </div>
+
+  <!-- Top Civic Header -->
+  <header class="bg-navy text-white border-b-4 border-crimson shadow-md no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">
+            <span class="bg-crimson text-white px-2 py-0.5 rounded">U.S. History</span>
+            <span>•</span>
+            <span>1970s – 2020 Foundations</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight font-serif">
+            Unit 1: The Rise of Conservatism &amp; The 1980s
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base mt-1">
+            Foundations of Modern Political Ideology &amp; The Conservative Resurgence
+          </p>
+        </div>
+
+        <!-- Live Student Progress Pill -->
+        <div class="bg-slate-800/90 border border-slate-700 rounded-xl px-4 py-3 flex items-center gap-4 self-start md:self-auto">
+          <div>
+            <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Module Progress</div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="w-32 bg-slate-700 rounded-full h-2.5 overflow-hidden">
+                <div id="overall-progress-bar" class="bg-emerald-500 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+              </div>
+              <span id="overall-progress-text" class="text-xs font-bold text-white">0%</span>
+            </div>
+          </div>
+          <div class="h-8 w-px bg-slate-700"></div>
+          <div class="text-xs space-y-1">
+            <div id="badge-tab1" class="text-slate-400 flex items-center gap-1.5"><i class="far fa-circle"></i> Policy Sorter</div>
+            <div id="badge-tab2" class="text-slate-400 flex items-center gap-1.5"><i class="far fa-circle"></i> Ideology Quiz</div>
+            <div id="badge-tab3" class="text-slate-400 flex items-center gap-1.5"><i class="far fa-circle"></i> 70s WebQuest</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Primary Tab Navigation -->
+    <nav class="bg-slate-900/60 border-t border-slate-700/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex overflow-x-auto no-scrollbar py-2 gap-2" role="tablist">
+          <button onclick="switchTab('tab1')" id="nav-tab1" class="tab-btn active flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all bg-white text-navy shadow-sm">
+            <span class="w-6 h-6 rounded-full bg-civicBlue text-white text-xs flex items-center justify-center font-bold">1</span>
+            Ideology Explorer &amp; Policy Sorter
+          </button>
+          <button onclick="switchTab('tab2')" id="nav-tab2" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all text-slate-300 hover:text-white hover:bg-slate-800">
+            <span class="w-6 h-6 rounded-full bg-slate-700 text-white text-xs flex items-center justify-center font-bold">2</span>
+            Where Do You Stand? (Quiz)
+          </button>
+          <button onclick="switchTab('tab3')" id="nav-tab3" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all text-slate-300 hover:text-white hover:bg-slate-800">
+            <span class="w-6 h-6 rounded-full bg-slate-700 text-white text-xs flex items-center justify-center font-bold">3</span>
+            1970s Conservative Resurgence WebQuest
+          </button>
+          <button onclick="switchTab('tab4')" id="nav-tab4" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all text-slate-300 hover:text-white hover:bg-slate-800 ml-auto">
+            <i class="fas fa-file-signature text-emerald-400"></i>
+            Exit Ticket &amp; Turn-In Report
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: IDEOLOGY EXPLORER & POLICY SORTER                            -->
+    <!-- =================================================================== -->
+    <section id="tab1" class="tab-content active space-y-8">
+      <!-- Intro Banner -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <span class="inline-block text-xs font-bold uppercase tracking-wider text-civicBlue bg-blue-50 px-2.5 py-1 rounded-md mb-2">Part 1 Objective: Decoding Political Ideology</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-navy">Liberal vs. Conservative Policy Framework</h2>
+            <p class="text-slate-600 text-sm sm:text-base mt-1 max-w-3xl">
+              To analyze American Presidents from Ronald Reagan (1980) through 2020, you must first be able to identify whether a policy leans <strong>Liberal</strong> or <strong>Conservative</strong>. Study the 12 core issues below, then test your skills in the <strong>Policy Decoder Challenge</strong>.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 shrink-0">
+            <a href="#policy-decoder-section" class="inline-flex items-center gap-2 bg-navy hover:bg-slate-800 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition shadow-sm">
+              <i class="fas fa-bolt text-amber-400"></i> Jump to Policy Decoder
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PART A: Interactive Reference Matrix -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-5 sm:p-6 border-b border-slate-200 bg-slate-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-lg font-bold text-navy flex items-center gap-2">
+              <i class="fas fa-scale-balanced text-civicBlue"></i>
+              Part A: The 12 Core Policy Issues Reference Matrix
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Filter by keyword or switch between Comparison Table and Study Flashcards.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- Search Filter -->
+            <div class="relative">
+              <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="text" id="issue-search" oninput="filterIssues()" placeholder="Filter 12 issues..." class="pl-8 pr-3 py-1.5 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-civicBlue bg-white w-44 sm:w-52">
+            </div>
+
+            <!-- View Mode Toggle -->
+            <div class="inline-flex rounded-lg border border-slate-300 bg-white p-0.5">
+              <button onclick="setMatrixView('table')" id="btn-view-table" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-navy text-white transition">
+                <i class="fas fa-table-columns mr-1"></i> Side-by-Side
+              </button>
+              <button onclick="setMatrixView('cards')" id="btn-view-cards" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-navy transition">
+                <i class="fas fa-clone mr-1"></i> Study Cards
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side-by-Side Table View -->
+        <div id="matrix-table-view" class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 text-xs uppercase tracking-wider">
+                <th class="py-3.5 px-5 bg-slate-100 text-navy font-bold w-1/4">Policy Issue</th>
+                <th class="py-3.5 px-5 bg-blue-50/90 text-civicBlue font-bold w-[37.5%] border-l border-slate-200">
+                  <i class="fas fa-landmark mr-1.5"></i> Liberal View
+                </th>
+                <th class="py-3.5 px-5 bg-red-50/90 text-crimson font-bold w-[37.5%] border-l border-slate-200">
+                  <i class="fas fa-flag-usa mr-1.5"></i> Conservative View
+                </th>
+              </tr>
+            </thead>
+            <tbody id="issues-table-body" class="divide-y divide-slate-200 text-sm">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Flashcard Study View -->
+        <div id="matrix-cards-view" class="hidden p-6 bg-slate-50">
+          <div class="max-w-2xl mx-auto">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 mb-3">
+              <span id="flashcard-counter">Issue 1 of 12</span>
+              <span>Click card to flip between Liberal &amp; Conservative views</span>
+            </div>
+
+            <div id="flashcard-element" onclick="flipFlashcard()" class="flashcard cursor-pointer perspective-1000 h-72 sm:h-64 w-full select-none">
+              <div class="flashcard-inner relative w-full h-full">
+                <!-- Front: Liberal -->
+                <div class="flashcard-front absolute inset-0 bg-white border-2 border-civicBlue rounded-2xl p-6 shadow-md flex flex-col justify-between">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider bg-blue-100 text-civicBlue px-3 py-1 rounded-full">Liberal View</span>
+                    <span class="text-xs text-slate-400"><i class="fas fa-rotate mr-1"></i> Tap to see Conservative View</span>
+                  </div>
+                  <div class="my-auto text-center px-2">
+                    <div id="fc-issue-front" class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Issue Name</div>
+                    <p id="fc-liberal-text" class="text-lg sm:text-xl font-semibold text-navy leading-relaxed">Liberal text here</p>
+                  </div>
+                  <div class="text-center text-xs text-civicBlue font-medium">Modern U.S. Political Ideology</div>
+                </div>
+
+                <!-- Back: Conservative -->
+                <div class="flashcard-back absolute inset-0 bg-white border-2 border-crimson rounded-2xl p-6 shadow-md flex flex-col justify-between">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider bg-red-100 text-crimson px-3 py-1 rounded-full">Conservative View</span>
+                    <span class="text-xs text-slate-400"><i class="fas fa-rotate mr-1"></i> Tap to see Liberal View</span>
+                  </div>
+                  <div class="my-auto text-center px-2">
+                    <div id="fc-issue-back" class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Issue Name</div>
+                    <p id="fc-conservative-text" class="text-lg sm:text-xl font-semibold text-navy leading-relaxed">Conservative text here</p>
+                  </div>
+                  <div class="text-center text-xs text-crimson font-medium">Modern U.S. Political Ideology</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between mt-4">
+              <button onclick="prevFlashcard()" class="px-4 py-2 bg-white border border-slate-300 hover:bg-slate-100 rounded-xl text-sm font-semibold text-navy transition">
+                <i class="fas fa-arrow-left mr-1.5"></i> Previous
+              </button>
+              <div class="flex gap-1.5" id="flashcard-dots"></div>
+              <button onclick="nextFlashcard()" class="px-4 py-2 bg-navy hover:bg-slate-800 rounded-xl text-sm font-semibold text-white transition">
+                Next <i class="fas fa-arrow-right ml-1.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PART B: Policy Decoder Interactive Challenge -->
+      <div id="policy-decoder-section" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-6 bg-navy text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Part B: Skill Application Challenge</span>
+            <h3 class="text-xl font-bold mt-0.5">The Policy Decoder (12 Scenarios)</h3>
+            <p class="text-slate-300 text-sm mt-1">Read each policy proposal below and classify whether it reflects a <strong>Liberal</strong> or <strong>Conservative</strong> ideology.</p>
+          </div>
+          <div class="bg-slate-800 border border-slate-700 px-4 py-3 rounded-xl text-right shrink-0">
+            <div class="text-xs text-slate-400 uppercase font-semibold">Mastery Score</div>
+            <div class="text-2xl font-extrabold text-white"><span id="sorter-score">0</span> <span class="text-sm font-normal text-slate-400">/ 12</span></div>
+          </div>
+        </div>
+
+        <div class="p-6">
+          <!-- Progress Bar -->
+          <div class="w-full bg-slate-100 rounded-full h-2 mb-6 overflow-hidden">
+            <div id="sorter-progress-bar" class="bg-civicBlue h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+
+          <!-- Active Scenario Card -->
+          <div id="sorter-game-container" class="max-w-3xl mx-auto">
+            <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+              <span id="sorter-q-number">Scenario 1 of 12</span>
+              <span id="sorter-category-badge" class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded">Topic: Taxes</span>
+            </div>
+
+            <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 sm:p-8 text-center my-3">
+              <p class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-2">Proposed Policy Action</p>
+              <h4 id="sorter-prompt" class="text-lg sm:text-xl font-bold text-navy leading-snug">
+                Loading scenario...
+              </h4>
+            </div>
+
+            <!-- Choice Buttons -->
+            <div id="sorter-buttons" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+              <button onclick="submitSorterChoice('Liberal')" class="group p-4 rounded-xl border-2 border-civicBlue/30 bg-blue-50/50 hover:bg-civicBlue hover:text-white hover:border-civicBlue transition-all flex items-center justify-center gap-3 font-bold text-civicBlue text-base shadow-sm">
+                <i class="fas fa-landmark text-lg"></i>
+                <span>Liberal Policy</span>
+              </button>
+              <button onclick="submitSorterChoice('Conservative')" class="group p-4 rounded-xl border-2 border-crimson/30 bg-red-50/50 hover:bg-crimson hover:text-white hover:border-crimson transition-all flex items-center justify-center gap-3 font-bold text-crimson text-base shadow-sm">
+                <i class="fas fa-flag-usa text-lg"></i>
+                <span>Conservative Policy</span>
+              </button>
+            </div>
+
+            <!-- Immediate Feedback Box -->
+            <div id="sorter-feedback" class="hidden mt-5 p-5 rounded-xl border">
+              <div class="flex items-start gap-3">
+                <i id="sorter-fb-icon" class="fas fa-check-circle text-xl mt-0.5"></i>
+                <div class="flex-grow">
+                  <h5 id="sorter-fb-title" class="font-bold text-base">Correct!</h5>
+                  <p id="sorter-fb-text" class="text-sm mt-1 leading-relaxed"></p>
+                  <button onclick="nextSorterQuestion()" class="mt-4 px-5 py-2 bg-navy hover:bg-slate-800 text-white text-sm font-semibold rounded-lg transition">
+                    Next Scenario <i class="fas fa-arrow-right ml-1.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Completed Summary State -->
+          <div id="sorter-complete-container" class="hidden max-w-2xl mx-auto text-center py-6">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+              <i class="fas fa-award"></i>
+            </div>
+            <h4 class="text-2xl font-bold text-navy">Policy Decoder Complete!</h4>
+            <p class="text-slate-600 mt-2">
+              You scored <strong id="sorter-final-score" class="text-navy">0/12</strong> on identifying Liberal vs. Conservative policies. Your score has been recorded on your Exit Ticket.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 mt-6">
+              <button onclick="resetSorter()" class="px-4 py-2.5 border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold rounded-xl text-sm transition">
+                <i class="fas fa-rotate-right mr-1.5"></i> Practice Again
+              </button>
+              <button onclick="switchTab('tab2')" class="px-5 py-2.5 bg-civicBlue hover:bg-blue-700 text-white font-semibold rounded-xl text-sm transition shadow-sm">
+                Continue to Tab 2: Ideology Quiz <i class="fas fa-arrow-right ml-1.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: WHERE DO YOU STAND? (POLITICAL IDEOLOGY COMPASS QUIZ)        -->
+    <!-- =================================================================== -->
+    <section id="tab2" class="tab-content space-y-8">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <span class="inline-block text-xs font-bold uppercase tracking-wider text-crimson bg-red-50 px-2.5 py-1 rounded-md mb-2">Part 2: Personal Political Compass</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-navy">Where Do You Stand on the 12 Core Issues?</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-1 max-w-3xl">
+          Answer these 12 neutral policy questions honestly based on your own beliefs. There are no "right" or "wrong" answers—most Americans hold a mix of liberal and conservative views depending on the topic.
+        </p>
+      </div>
+
+      <!-- Quiz Form Container -->
+      <div id="quiz-questions-wrapper" class="space-y-5">
+        <!-- Populated dynamically by JS -->
+      </div>
+
+      <!-- Submit Quiz Bar -->
+      <div id="quiz-submit-bar" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-sm text-slate-600">
+          Answered: <strong id="quiz-answered-count" class="text-navy">0</strong> of <strong>12</strong> questions
+        </div>
+        <button onclick="calculateQuizResults()" class="w-full sm:w-auto px-6 py-3 bg-navy hover:bg-slate-800 text-white font-bold rounded-xl transition shadow-sm flex items-center justify-center gap-2">
+          <i class="fas fa-chart-pie"></i> Calculate My Political Ideology
+        </button>
+      </div>
+
+      <!-- Quiz Results Dashboard (Hidden until submitted) -->
+      <div id="quiz-results-panel" class="hidden bg-white rounded-2xl border-2 border-navy shadow-md overflow-hidden">
+        <div class="bg-navy text-white p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-slate-300 font-bold">Your Ideology Profile</span>
+              <h3 id="quiz-result-label" class="text-2xl sm:text-3xl font-extrabold mt-1 text-amber-400">Moderate / Balanced</h3>
+            </div>
+            <button onclick="retakeQuiz()" class="self-start sm:self-auto px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg text-xs font-semibold text-slate-200 transition">
+              <i class="fas fa-rotate-left mr-1"></i> Retake Quiz
+            </button>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 space-y-8">
+          <!-- Visual Spectrum Bar -->
+          <div>
+            <div class="flex justify-between text-xs font-bold uppercase tracking-wider mb-2">
+              <span class="text-civicBlue">Strong Liberal</span>
+              <span class="text-slate-500">Centrist / Mixed</span>
+              <span class="text-crimson">Strong Conservative</span>
+            </div>
+            <div class="relative h-6 rounded-full bg-gradient-to-r from-civicBlue via-purple-400 to-crimson p-1 shadow-inner">
+              <!-- Marker Pin -->
+              <div id="quiz-spectrum-marker" class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 bg-white border-4 border-navy rounded-full shadow-lg transition-all duration-700 flex items-center justify-center" style="left: 50%;">
+                <div class="w-2 h-2 bg-navy rounded-full"></div>
+              </div>
+            </div>
+            <div class="flex justify-between text-[11px] text-slate-400 mt-1.5">
+              <span>-24 (Liberal)</span>
+              <span>0 (Balanced)</span>
+              <span>+24 (Conservative)</span>
+            </div>
+          </div>
+
+          <!-- Category Breakdown -->
+          <div>
+            <h4 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3">Ideological Breakdown by Issue Category</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="text-xs font-bold text-slate-500 uppercase">Economic &amp; Tax Policy</div>
+                <div id="cat-econ-label" class="text-lg font-bold text-navy mt-1">Balanced</div>
+                <p class="text-xs text-slate-500 mt-1">Covers Free Market, Taxes, Social Safety Net &amp; Healthcare.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="text-xs font-bold text-slate-500 uppercase">Social &amp; Cultural Values</div>
+                <div id="cat-social-label" class="text-lg font-bold text-navy mt-1">Balanced</div>
+                <p class="text-xs text-slate-500 mt-1">Covers Cultural Values, Gun Rights, Immigration &amp; Environment.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="text-xs font-bold text-slate-500 uppercase">Role of Government &amp; Law</div>
+                <div id="cat-gov-label" class="text-lg font-bold text-navy mt-1">Balanced</div>
+                <p class="text-xs text-slate-500 mt-1">Covers Federal Size, Constitution, Criminal Justice &amp; Education.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Historical Context Note -->
+          <div class="bg-blue-50/70 border border-blue-200 rounded-xl p-5 flex gap-4 items-start">
+            <i class="fas fa-landmark text-civicBlue text-xl mt-0.5"></i>
+            <div class="text-sm text-slate-700 leading-relaxed">
+              <strong class="text-navy">Why This Matters for U.S. History (1980–2020):</strong>
+              Most citizens hold a combination of views rather than fitting neatly into one box. As we study Presidents from <strong>Ronald Reagan</strong> and <strong>George H.W. Bush</strong> to <strong>Bill Clinton</strong>, <strong>George W. Bush</strong>, <strong>Barack Obama</strong>, and <strong>Donald Trump</strong>, use this spectrum to evaluate how their domestic policies shifted the nation left or right.
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <button onclick="switchTab('tab3')" class="px-5 py-2.5 bg-navy hover:bg-slate-800 text-white font-semibold rounded-xl text-sm transition">
+              Continue to Tab 3: 1970s Conservative Resurgence WebQuest <i class="fas fa-arrow-right ml-1.5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 3: 1970s CONSERVATIVE RESURGENCE WEBQUEST                       -->
+    <!-- =================================================================== -->
+    <section id="tab3" class="tab-content space-y-6">
+      <!-- WebQuest Header -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="inline-block text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md mb-2">Part 3: Historical Investigation</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-navy">WebQuest: Why Did Conservatism Rise at the End of the 1970s?</h2>
+            <p class="text-slate-600 text-sm sm:text-base mt-1 max-w-3xl">
+              Explore all <strong>5 Historical Evidence Stops</strong> below. Examine the primary/secondary dossiers, answer each checkpoint question, and record your historical analysis—your responses auto-save to your final report.
+            </p>
+          </div>
+          <div class="bg-slate-100 px-4 py-3 rounded-xl text-center shrink-0">
+            <div class="text-xs font-bold text-slate-500 uppercase">Stops Completed</div>
+            <div class="text-xl font-extrabold text-navy mt-0.5"><span id="wq-stops-count">0</span> / 5</div>
+          </div>
+        </div>
+
+        <!-- Stop Navigation Pills -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-6 pt-5 border-t border-slate-200">
+          <button onclick="showWebQuestStop(1)" id="wq-nav-1" class="wq-pill active p-2.5 rounded-xl border-2 border-navy bg-navy text-white text-xs font-bold text-left transition">
+            <div class="opacity-75">STOP 1</div>
+            <div class="truncate">Big Gov't Fails</div>
+          </button>
+          <button onclick="showWebQuestStop(2)" id="wq-nav-2" class="wq-pill p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-navy text-xs font-bold text-left transition">
+            <div class="text-slate-400">STOP 2</div>
+            <div class="truncate">Demographics &amp; "Me"</div>
+          </button>
+          <button onclick="showWebQuestStop(3)" id="wq-nav-3" class="wq-pill p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-navy text-xs font-bold text-left transition">
+            <div class="text-slate-400">STOP 3</div>
+            <div class="truncate">Cultural Backlash</div>
+          </button>
+          <button onclick="showWebQuestStop(4)" id="wq-nav-4" class="wq-pill p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-navy text-xs font-bold text-left transition">
+            <div class="text-slate-400">STOP 4</div>
+            <div class="truncate">The "New Right"</div>
+          </button>
+          <button onclick="showWebQuestStop(5)" id="wq-nav-5" class="wq-pill p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-navy text-xs font-bold text-left transition col-span-2 sm:col-span-1">
+            <div class="text-slate-400">STOP 5</div>
+            <div class="truncate">Election of 1980</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STOP 1: Erosion of Trust ("Big Government's Spectacular Fails") -->
+      <div id="wq-stop-1" class="wq-stop-panel bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-bold uppercase tracking-wider text-crimson">Stop 1 of 5 • Political &amp; Foreign Crises</span>
+          <h3 class="text-2xl font-bold text-navy mt-1">The Erosion of Trust: "Big Government's Spectacular Fails"</h3>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+            <p>
+              During the <strong>1940s and 1950s</strong>, Republicans and Democrats actually looked very similar in many of their ideals. Both parties made fighting the <strong>Cold War</strong> their top foreign policy priority, and both favored a significant role for the federal government in domestic affairs.
+            </p>
+            <p>
+              However, during the 1960s and 1970s, a series of national crises—even though not all were initiated by Democrats—shattered Americans' optimism and faith in a large, powerful federal government. Click each crisis card below to inspect how it damaged public trust:
+            </p>
+
+            <!-- Interactive Crisis Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div onclick="inspectCrisis(0)" class="cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-crimson bg-slate-50 hover:bg-red-50/30 transition">
+                <div class="flex items-center justify-between font-bold text-navy text-sm">
+                  <span><i class="fas fa-helicopter text-crimson mr-2"></i>Vietnam War</span>
+                  <span class="text-xs text-civicBlue">Inspect</span>
+                </div>
+              </div>
+              <div onclick="inspectCrisis(1)" class="cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-crimson bg-slate-50 hover:bg-red-50/30 transition">
+                <div class="flex items-center justify-between font-bold text-navy text-sm">
+                  <span><i class="fas fa-city text-crimson mr-2"></i>1960s Urban Riots &amp; Counterculture</span>
+                  <span class="text-xs text-civicBlue">Inspect</span>
+                </div>
+              </div>
+              <div onclick="inspectCrisis(2)" class="cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-crimson bg-slate-50 hover:bg-red-50/30 transition">
+                <div class="flex items-center justify-between font-bold text-navy text-sm">
+                  <span><i class="fas fa-user-secret text-crimson mr-2"></i>Watergate Scandal</span>
+                  <span class="text-xs text-civicBlue">Inspect</span>
+                </div>
+              </div>
+              <div onclick="inspectCrisis(3)" class="cursor-pointer p-4 rounded-xl border border-slate-200 hover:border-crimson bg-slate-50 hover:bg-red-50/30 transition">
+                <div class="flex items-center justify-between font-bold text-navy text-sm">
+                  <span><i class="fas fa-gas-pump text-crimson mr-2"></i>1970s Oil Crisis &amp; Iran Hostages</span>
+                  <span class="text-xs text-civicBlue">Inspect</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Evidence Dossier Reader -->
+          <div class="bg-navy text-white rounded-2xl p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-slate-700 pb-3 mb-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-400"><i class="fas fa-folder-open mr-1.5"></i> Evidence Dossier</span>
+                <span id="crisis-trust-badge" class="text-xs bg-crimson px-2 py-0.5 rounded font-bold">Public Trust: Declining</span>
+              </div>
+              <h4 id="crisis-title" class="text-lg font-bold text-white">Select a Crisis Card</h4>
+              <p id="crisis-desc" class="text-sm text-slate-300 mt-2 leading-relaxed">
+                Click any of the crisis cards on the left to examine how major events of the 1960s and 1970s weakened American confidence in federal government solutions.
+              </p>
+            </div>
+            <div class="mt-6 pt-3 border-t border-slate-700 text-xs text-slate-400">
+              Historical Takeaway: Decreased optimism in large federal government opened the door for conservative alternatives.
+            </div>
+          </div>
+        </div>
+
+        <!-- Stop 1 Checkpoint & Reflection -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4">
+          <h4 class="font-bold text-navy text-base"><i class="fas fa-check-double text-civicBlue mr-2"></i>Stop 1 Checkpoint</h4>
+          <div>
+            <p class="text-sm font-semibold text-slate-800 mb-2">1. How did the political climate of the 1940s–1950s compare to the late 1960s–1970s?</p>
+            <div class="space-y-2 text-sm">
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq1_mc" value="a" onchange="checkWQMC(1, 'b', this.value)" class="text-civicBlue">
+                <span>In the 40s/50s, Republicans opposed the Cold War, while Democrats wanted to abolish federal agencies.</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq1_mc" value="b" onchange="checkWQMC(1, 'b', this.value)" class="text-civicBlue">
+                <span>In the 40s/50s, both parties supported fighting the Cold War and a strong federal domestic role, until 60s/70s crises eroded trust in big government.</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq1_mc" value="c" onchange="checkWQMC(1, 'b', this.value)" class="text-civicBlue">
+                <span>Watergate and the Iran Hostage Crisis convinced Americans that the federal government needed much more power and funding.</span>
+              </label>
+            </div>
+            <div id="wq1_mc_feedback" class="hidden mt-2 text-xs font-semibold"></div>
+          </div>
+
+          <div>
+            <label for="wq1_reflection" class="block text-sm font-semibold text-slate-800 mb-1">
+              2. Short Analysis: Even though Republicans (like Nixon during Watergate) were involved in some 1970s scandals, why did these crises end up helping the Conservative movement?
+            </label>
+            <textarea id="wq1_reflection" rows="2" oninput="saveWQReflection(1, this.value)" placeholder="Type your 1-2 sentence explanation here..." class="w-full p-3 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-civicBlue bg-white"></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <button onclick="showWebQuestStop(2)" class="px-5 py-2.5 bg-navy hover:bg-slate-800 text-white font-semibold rounded-xl text-sm transition">
+            Next: Stop 2 (Demographics &amp; "The Me Decade") <i class="fas fa-arrow-right ml-1.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STOP 2: Demographic Shifts & "The Me Decade" -->
+      <div id="wq-stop-2" class="wq-stop-panel hidden bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-bold uppercase tracking-wider text-civicBlue">Stop 2 of 5 • Population &amp; Cultural Shifts</span>
+          <h3 class="text-2xl font-bold text-navy mt-1">Demographic Shifts &amp; "The Me Decade"</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Card 1: The Me Decade -->
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg">
+              <i class="fas fa-person-running"></i>
+            </div>
+            <h4 class="font-bold text-navy text-lg">"The Me Decade"</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Many observers called the 1970s <strong>"The Me Decade"</strong> because Americans turned inward toward self-improvement and personal vitality rather than collective social crusades:
+            </p>
+            <ul class="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
+              <li>Rise of <strong>Transcendental Meditation</strong> &amp; Eastern relaxation practices.</li>
+              <li>Boom in personal fitness: the <strong>NY Marathon</strong> grew from ~100 men in 1970 to <strong>14,000</strong> in 1980.</li>
+              <li>Bodybuilding &amp; muscular action stars like <strong>Sylvester Stallone</strong> and <strong>Arnold Schwarzenegger</strong> rose in Hollywood.</li>
+            </ul>
+          </div>
+
+          <!-- Card 2: Movement to the Suburbs -->
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 text-civicBlue flex items-center justify-center text-lg">
+              <i class="fas fa-house-chimney"></i>
+            </div>
+            <h4 class="font-bold text-navy text-lg">Movement to the Suburbs</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Population trends (demographics) reshaped American politics in favor of conservatism:
+            </p>
+            <ul class="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
+              <li>Traditionally strong liberal northern cities lost population and political clout as families moved out to the <strong>suburbs</strong>.</li>
+              <li>Suburban homeowners faced financial struggles (inflation/property taxes) and became receptive to targeted conservative messaging against high taxes and urban spending.</li>
+            </ul>
+          </div>
+
+          <!-- Card 3: Rust Belt to Sunbelt -->
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-red-100 text-crimson flex items-center justify-center text-lg">
+              <i class="fas fa-sun"></i>
+            </div>
+            <h4 class="font-bold text-navy text-lg">Rust Belt to Sunbelt</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Millions of white Americans migrated from the industrial <strong>Rust Belt</strong> (Northeast/Midwest) to the growing <strong>Sunbelt</strong> (South/Southwest):
+            </p>
+            <ul class="text-xs text-slate-700 space-y-1.5 list-disc pl-4">
+              <li>Since the Civil War, most white voters in the Deep South voted Democratic ("Solid South").</li>
+              <li>Combined with backlash to the <strong>Civil Rights Act of 1964</strong>, this migration fueled a massive rise of the <strong>Republican Party</strong> across the South.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Stop 2 Checkpoint & Reflection -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4">
+          <h4 class="font-bold text-navy text-base"><i class="fas fa-check-double text-civicBlue mr-2"></i>Stop 2 Checkpoint</h4>
+          <div>
+            <p class="text-sm font-semibold text-slate-800 mb-2">1. Which two developments combined to turn the historically Democratic South into a Republican stronghold?</p>
+            <div class="space-y-2 text-sm">
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq2_mc" value="a" onchange="checkWQMC(2, 'a', this.value)" class="text-civicBlue">
+                <span>White migration from the Rust Belt to the Sunbelt and political reaction following the Civil Rights Act of 1964.</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq2_mc" value="b" onchange="checkWQMC(2, 'a', this.value)" class="text-civicBlue">
+                <span>The popularity of the New York Marathon and the rise of northern industrial cities.</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq2_mc" value="c" onchange="checkWQMC(2, 'a', this.value)" class="text-civicBlue">
+                <span>Increased federal welfare programs and higher urban property taxes.</span>
+              </label>
+            </div>
+            <div id="wq2_mc_feedback" class="hidden mt-2 text-xs font-semibold"></div>
+          </div>
+
+          <div>
+            <label for="wq2_reflection" class="block text-sm font-semibold text-slate-800 mb-1">
+              2. Short Analysis: How did moving from northern cities to the suburbs change voters' political priorities in the 1970s?
+            </label>
+            <textarea id="wq2_reflection" rows="2" oninput="saveWQReflection(2, this.value)" placeholder="Type your 1-2 sentence explanation here..." class="w-full p-3 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-civicBlue bg-white"></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <button onclick="showWebQuestStop(1)" class="px-4 py-2.5 border border-slate-300 hover:bg-slate-100 text-navy font-semibold rounded-xl text-sm transition">
+            <i class="fas fa-arrow-left mr-1.5"></i> Previous Stop
+          </button>
+          <button onclick="showWebQuestStop(3)" class="px-5 py-2.5 bg-navy hover:bg-slate-800 text-white font-semibold rounded-xl text-sm transition">
+            Next: Stop 3 (Cultural &amp; Policy Backlash) <i class="fas fa-arrow-right ml-1.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STOP 3: Backlash Against Great Society & Cultural Change -->
+      <div id="wq-stop-3" class="wq-stop-panel hidden bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-bold uppercase tracking-wider text-crimson">Stop 3 of 5 • Economic &amp; Social Grievances</span>
+          <h3 class="text-2xl font-bold text-navy mt-1">Conservative Backlash Against Liberal Policies &amp; Court Rulings</h3>
+        </div>
+
+        <p class="text-sm sm:text-base text-slate-600">
+          Click through each of the 6 major domestic flashpoints below to see why conservatives mobilized against liberal programs and Supreme Court decisions:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+            <div class="text-xs font-bold uppercase text-crimson mb-1">1. High Taxes</div>
+            <h4 class="font-bold text-navy">Tax Revolt Sentiment</h4>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Conservatives argued federal taxes had grown far too high to fund expanding government programs, hurting working families and stifling business investment.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+            <div class="text-xs font-bold uppercase text-crimson mb-1">2. Great Society Programs</div>
+            <h4 class="font-bold text-navy">Critique of Welfare</h4>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Conservatives argued Great Society programs made poverty worse, imposed unfunded requirements on states, rewarded a lack of effort, and contributed to an increase in babies born out of wedlock—weakening the traditional family.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+            <div class="text-xs font-bold uppercase text-crimson mb-1">3. Affirmative Action</div>
+            <h4 class="font-bold text-navy">"Reverse Discrimination"</h4>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Policies designed to increase minority representation in hiring and college admissions were criticized by conservatives as unfair "reverse discrimination."
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+            <div class="text-xs font-bold uppercase text-crimson mb-1">4. Engel v. Vitale</div>
+            <h4 class="font-bold text-navy">Religion in Public Schools</h4>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              The Supreme Court decision banning school-sponsored prayer and religious teaching in public schools sparked outrage among religious conservatives.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+            <div class="text-xs font-bold uppercase text-crimson mb-1">5. Roe v. Wade</div>
+            <h4 class="font-bold text-navy">Abortion &amp; Traditional Family</h4>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              The Supreme Court ruling legalizing abortion became a central rallying point for social conservatives who viewed it as a sign of moral decline and erosion of the traditional family.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+            <div class="text-xs font-bold uppercase text-crimson mb-1">6. Equal Rights Amendment (ERA)</div>
+            <h4 class="font-bold text-navy">Debate Over Gender Roles</h4>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Opponents warned the ERA would force women into male combat roles, repeal alimony and child custody protections, and divide women (middle-class vs. poor minority women; housewives vs. working women).
+            </p>
+          </div>
+        </div>
+
+        <!-- Stop 3 Checkpoint & Reflection -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4">
+          <h4 class="font-bold text-navy text-base"><i class="fas fa-check-double text-civicBlue mr-2"></i>Stop 3 Checkpoint</h4>
+          <div>
+            <p class="text-sm font-semibold text-slate-800 mb-2">1. According to your notes, which of the following was a major conservative argument AGAINST the Equal Rights Amendment (ERA)?</p>
+            <div class="space-y-2 text-sm">
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq3_mc" value="a" onchange="checkWQMC(3, 'c', this.value)" class="text-civicBlue">
+                <span>It would raise federal income taxes on corporations.</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq3_mc" value="b" onchange="checkWQMC(3, 'c', this.value)" class="text-civicBlue">
+                <span>It would require mandatory prayer in all public schools.</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq3_mc" value="c" onchange="checkWQMC(3, 'c', this.value)" class="text-civicBlue">
+                <span>It would force women into military combat roles and repeal alimony and custody protections.</span>
+              </label>
+            </div>
+            <div id="wq3_mc_feedback" class="hidden mt-2 text-xs font-semibold"></div>
+          </div>
+
+          <div>
+            <label for="wq3_reflection" class="block text-sm font-semibold text-slate-800 mb-1">
+              2. Short Analysis: Why did conservatives argue that Great Society welfare programs hurt rather than helped American society?
+            </label>
+            <textarea id="wq3_reflection" rows="2" oninput="saveWQReflection(3, this.value)" placeholder="Type your 1-2 sentence explanation here..." class="w-full p-3 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-civicBlue bg-white"></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <button onclick="showWebQuestStop(2)" class="px-4 py-2.5 border border-slate-300 hover:bg-slate-100 text-navy font-semibold rounded-xl text-sm transition">
+            <i class="fas fa-arrow-left mr-1.5"></i> Previous Stop
+          </button>
+          <button onclick="showWebQuestStop(4)" class="px-5 py-2.5 bg-navy hover:bg-slate-800 text-white font-semibold rounded-xl text-sm transition">
+            Next: Stop 4 (Building the "New Right") <i class="fas fa-arrow-right ml-1.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STOP 4: Building the "New Right" Coalition -->
+      <div id="wq-stop-4" class="wq-stop-panel hidden bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-bold uppercase tracking-wider text-civicBlue">Stop 4 of 5 • Political Organization</span>
+          <h3 class="text-2xl font-bold text-navy mt-1">Building the "New Right" Coalition</h3>
+          <p class="text-sm text-slate-600 mt-1">
+            The <strong>New Right</strong> grew rapidly as a conglomerate of distinct groups—from mainstream religious and business leaders to radical fringe elements—united against liberal policies.
+          </p>
+        </div>
+
+        <!-- 3 Pillars of the New Right -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Pillar 1: Religious Right -->
+          <div class="rounded-2xl border-2 border-civicBlue/30 bg-blue-50/30 p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold uppercase tracking-wider bg-civicBlue text-white px-2.5 py-1 rounded">Pillar 1: The Religious Right</span>
+                <i class="fas fa-tv text-civicBlue text-lg"></i>
+              </div>
+              <h4 class="font-bold text-navy text-lg mb-2">Televangelists &amp; Voter Mobilization</h4>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">
+                Religious leaders used television and grassroots organizing to combat what they viewed as America's moral decline (e.g., <em>Roe v. Wade</em>):
+              </p>
+              <ul class="text-xs text-slate-700 space-y-2 border-t border-blue-200 pt-3">
+                <li><strong>Pat Robertson:</strong> Founded the <em>Christian Broadcast Network (CBN)</em> and hosted <em>The 700 Club</em>.</li>
+                <li><strong>Jim Bakker:</strong> Formed the <em>Praise the Lord (PTL) Network</em>, reaching huge TV audiences.</li>
+                <li><strong>Jerry Falwell:</strong> Founded the <strong>Moral Majority</strong>, registering <strong>over 2 million new voters</strong> (almost all voting Republican) using congressional <strong>"Report Cards"</strong> that graded politicians on moral issues.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Business Leaders -->
+          <div class="rounded-2xl border-2 border-emerald-600/30 bg-emerald-50/30 p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold uppercase tracking-wider bg-emerald-700 text-white px-2.5 py-1 rounded">Pillar 2: Business Leaders</span>
+                <i class="fas fa-chart-line text-emerald-700 text-lg"></i>
+              </div>
+              <h4 class="font-bold text-navy text-lg mb-2">Free Market &amp; Deregulation</h4>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">
+                Alongside the religious right, conservative business leaders funded think tanks and campaigns pushing free-market economics:
+              </p>
+              <ul class="text-xs text-slate-700 space-y-2 border-t border-emerald-200 pt-3">
+                <li>Argued that <strong>deficit spending</strong> and <strong>welfare</strong> needed to be cut to reduce the tax burden on families and businesses.</li>
+                <li>Contended that heavy <strong>government regulations</strong> were stifling economic growth, innovation, and personal wealth creation.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Pillar 3: Fringe / Radical Elements -->
+          <div class="rounded-2xl border-2 border-crimson/30 bg-red-50/30 p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold uppercase tracking-wider bg-crimson text-white px-2.5 py-1 rounded">Pillar 3: Fringe Extremists</span>
+                <i class="fas fa-triangle-exclamation text-crimson text-lg"></i>
+              </div>
+              <h4 class="font-bold text-navy text-lg mb-2">Radical &amp; Anti-Government Groups</h4>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">
+                Like many broad political movements, the New Right also had extreme fringe elements on its margins:
+              </p>
+              <ul class="text-xs text-slate-700 space-y-2 border-t border-red-200 pt-3">
+                <li><strong>Racial Hatred Groups:</strong> Groups like the <em>Ku Klux Klan</em> joined the outcry against perceived moral/social decline.</li>
+                <li><strong>Ultra-Libertarian Militias:</strong> Armed groups like the <em>Michigan Militia</em> formed to oppose a federal government they viewed as invasive.</li>
+                <li><strong>Historical Foreshadowing:</strong> Extremist anti-government standoffs would later erupt in the 1990s at <em>Ruby Ridge</em>, <em>Waco</em>, and the <em>Oklahoma City Bombing</em>.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stop 4 Checkpoint & Reflection -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4">
+          <h4 class="font-bold text-navy text-base"><i class="fas fa-check-double text-civicBlue mr-2"></i>Stop 4 Checkpoint</h4>
+          <div>
+            <p class="text-sm font-semibold text-slate-800 mb-2">1. How did Jerry Falwell's Moral Majority directly impact elections in the late 1970s and 1980?</p>
+            <div class="space-y-2 text-sm">
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq4_mc" value="a" onchange="checkWQMC(4, 'b', this.value)" class="text-civicBlue">
+                <span>It lobbied Congress to increase welfare funding and expand federal regulations.</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq4_mc" value="b" onchange="checkWQMC(4, 'b', this.value)" class="text-civicBlue">
+                <span>It registered over 2 million previously non-voting religious citizens and published political "Report Cards" guiding them to vote Republican.</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq4_mc" value="c" onchange="checkWQMC(4, 'b', this.value)" class="text-civicBlue">
+                <span>It formed armed militias across Michigan to boycott presidential elections.</span>
+              </label>
+            </div>
+            <div id="wq4_mc_feedback" class="hidden mt-2 text-xs font-semibold"></div>
+          </div>
+
+          <div>
+            <label for="wq4_reflection" class="block text-sm font-semibold text-slate-800 mb-1">
+              2. Short Analysis: Why is the New Right described as a "conglomerate" (coalition) of different groups rather than a single-issue movement?
+            </label>
+            <textarea id="wq4_reflection" rows="2" oninput="saveWQReflection(4, this.value)" placeholder="Type your 1-2 sentence explanation here..." class="w-full p-3 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-civicBlue bg-white"></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <button onclick="showWebQuestStop(3)" class="px-4 py-2.5 border border-slate-300 hover:bg-slate-100 text-navy font-semibold rounded-xl text-sm transition">
+            <i class="fas fa-arrow-left mr-1.5"></i> Previous Stop
+          </button>
+          <button onclick="showWebQuestStop(5)" class="px-5 py-2.5 bg-navy hover:bg-slate-800 text-white font-semibold rounded-xl text-sm transition">
+            Next: Stop 5 (The Election of 1980) <i class="fas fa-arrow-right ml-1.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- STOP 5: The Election of 1980 & The Reagan Revolution -->
+      <div id="wq-stop-5" class="wq-stop-panel hidden bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+        <div class="border-b border-slate-200 pb-4">
+          <span class="text-xs font-bold uppercase tracking-wider text-crimson">Stop 5 of 5 • Turning Point Election</span>
+          <h3 class="text-2xl font-bold text-navy mt-1">The Election of 1980 &amp; The Reagan Revolution</h3>
+        </div>
+
+        <!-- Candidate Matchup -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Jimmy Carter -->
+          <div class="p-5 rounded-2xl border border-civicBlue/30 bg-blue-50/30">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase bg-civicBlue text-white px-2.5 py-0.5 rounded">Democrat (Incumbent)</span>
+              <span class="text-xs font-semibold text-slate-500">1977–1981</span>
+            </div>
+            <h4 class="text-xl font-bold text-navy">President Jimmy Carter</h4>
+            <p class="text-sm text-slate-600 mt-2">
+              Entered the 1980 campaign weakened and looking like a "lame duck" due to three major crises:
+            </p>
+            <ul class="text-xs sm:text-sm text-slate-700 mt-2 space-y-1 list-disc pl-4">
+              <li><strong>Rising Inflation</strong> &amp; economic stagnation at home</li>
+              <li><strong>Iran Hostage Crisis</strong> (52 Americans held for 444 days)</li>
+              <li><strong>Soviet Invasion of Afghanistan</strong> (Cold War tensions)</li>
+            </ul>
+          </div>
+
+          <!-- Ronald Reagan -->
+          <div class="p-5 rounded-2xl border border-crimson/30 bg-red-50/30">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase bg-crimson text-white px-2.5 py-0.5 rounded">Republican Challenger</span>
+              <span class="text-xs font-semibold text-slate-500">Former CA Governor</span>
+            </div>
+            <h4 class="text-xl font-bold text-navy">Ronald Reagan</h4>
+            <p class="text-sm text-slate-600 mt-2">
+              Former Hollywood actor and Governor of California. In the 1950s, he switched from a hardcore New Deal Democrat to a Republican because he hated the Great Society.
+            </p>
+            <div class="mt-3 p-3 bg-white rounded-xl border border-red-200 text-xs text-slate-700">
+              <strong>The Pivotal Debate (1 Week Before Election):</strong> Relaxed and composed, Reagan eased fears of his inexperience and asked voters: <em>"Are you better off than you were 4 years ago?"</em>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Key Conservative Values -->
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3">Reagan's 4 Key Conservative Values in 1980</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-navy text-sm mb-1"><i class="fas fa-minimize text-crimson mr-1.5"></i>1. Limited Government</div>
+              <p class="text-xs text-slate-600">Emphasize individual liberty and reduce the size and harmful interference of federal government.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-navy text-sm mb-1"><i class="fas fa-sack-dollar text-crimson mr-1.5"></i>2. Economic Freedom</div>
+              <p class="text-xs text-slate-600">Free markets, lower taxes, and deregulation to spur individual initiative and growth.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-navy text-sm mb-1"><i class="fas fa-church text-crimson mr-1.5"></i>3. Traditional Values</div>
+              <p class="text-xs text-slate-600">Uphold traditional family structures, morality, and religious beliefs against rapid social change.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-navy text-sm mb-1"><i class="fas fa-shield-halved text-crimson mr-1.5"></i>4. Strong Defense</div>
+              <p class="text-xs text-slate-600">A strong military and hawkish foreign policy to maintain global stability and counter the USSR.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Landslide Results & Inaugural Quote -->
+        <div class="bg-navy text-white rounded-2xl p-6 flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div class="space-y-2 max-w-2xl">
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-400">1980 Landslide &amp; 1981 Inauguration</span>
+            <blockquote class="font-serif italic text-lg sm:text-xl text-white">
+              "Government is NOT the solution to our problem; government is the problem."
+            </blockquote>
+            <p class="text-xs sm:text-sm text-slate-300">
+              Reagan won <strong>50.5% of the popular vote</strong> and nearly <strong>500 electoral votes</strong>, while Republicans took control of the <strong>U.S. Senate for the first time since 1955</strong>. His 1981 agenda: cut taxes, cut government spending, and balance the federal budget.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-3 shrink-0 w-full lg:w-auto">
+            <div class="bg-slate-800 border border-slate-700 p-3.5 rounded-xl text-center">
+              <div class="text-2xl font-extrabold text-amber-400">~500</div>
+              <div class="text-[11px] uppercase text-slate-300 font-semibold">Electoral Votes</div>
+            </div>
+            <div class="bg-slate-800 border border-slate-700 p-3.5 rounded-xl text-center">
+              <div class="text-2xl font-extrabold text-emerald-400">1955</div>
+              <div class="text-[11px] uppercase text-slate-300 font-semibold">1st GOP Senate Since</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stop 5 Checkpoint & Reflection -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4">
+          <h4 class="font-bold text-navy text-base"><i class="fas fa-check-double text-civicBlue mr-2"></i>Stop 5 Checkpoint</h4>
+          <div>
+            <p class="text-sm font-semibold text-slate-800 mb-2">1. What famous question did Ronald Reagan ask voters during the televised debate one week before the 1980 election?</p>
+            <div class="space-y-2 text-sm">
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq5_mc" value="a" onchange="checkWQMC(5, 'b', this.value)" class="text-civicBlue">
+                <span>"Ask not what your country can do for you..."</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq5_mc" value="b" onchange="checkWQMC(5, 'b', this.value)" class="text-civicBlue">
+                <span>"Are you better off than you were 4 years ago?"</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:bg-blue-50/40">
+                <input type="radio" name="wq5_mc" value="c" onchange="checkWQMC(5, 'b', this.value)" class="text-civicBlue">
+                <span>"The only thing we have to fear is fear itself."</span>
+              </label>
+            </div>
+            <div id="wq5_mc_feedback" class="hidden mt-2 text-xs font-semibold"></div>
+          </div>
+
+          <div>
+            <label for="wq5_reflection" class="block text-sm font-semibold text-slate-800 mb-1">
+              2. Final Synthesis: Summarize in 2–3 sentences how Ronald Reagan's 1981 message ("Government is NOT the solution to our problem; government is the problem") reversed the political consensus of the 1940s–1960s.
+            </label>
+            <textarea id="wq5_reflection" rows="3" oninput="saveWQReflection(5, this.value)" placeholder="Write your synthesis summary here..." class="w-full p-3 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-civicBlue bg-white"></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <button onclick="showWebQuestStop(4)" class="px-4 py-2.5 border border-slate-300 hover:bg-slate-100 text-navy font-semibold rounded-xl text-sm transition">
+            <i class="fas fa-arrow-left mr-1.5"></i> Previous Stop
+          </button>
+          <button onclick="switchTab('tab4')" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition shadow-sm">
+            Complete &amp; Open Exit Ticket Report <i class="fas fa-file-signature ml-1.5"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- TAB 4: STUDENT EXIT TICKET & PRINTABLE SUMMARY REPORT               -->
+    <!-- =================================================================== -->
+    <section id="tab4" class="tab-content space-y-6">
+      <!-- Action Controls (Hidden when printing) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 no-print">
+        <div>
+          <span class="inline-block text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-md mb-2">Turn-In &amp; Assessment Summary</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-navy">Student Completion Report &amp; Exit Ticket</h2>
+          <p class="text-slate-600 text-sm mt-1">
+            Enter your name and class period below, review your recorded scores and WebQuest reflections, and either <strong>Print / Save as PDF</strong> or <strong>Copy Text</strong> to submit to your teacher.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <button onclick="copyReportToClipboard()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-navy border border-slate-300 font-semibold rounded-xl text-sm transition flex items-center gap-2">
+            <i class="fas fa-copy"></i> Copy Summary Text
+          </button>
+          <button onclick="window.print()" class="px-5 py-2.5 bg-navy hover:bg-slate-800 text-white font-bold rounded-xl text-sm transition shadow-sm flex items-center gap-2">
+            <i class="fas fa-print"></i> Print / Save as PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Worksheet Sheet -->
+      <div id="printable-report-sheet" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-10 shadow-sm print-shadow-none space-y-8">
+        <!-- Header & Student Info Inputs -->
+        <div class="border-b-2 border-navy pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-widest text-crimson">U.S. History • Unit 1 Assessment</div>
+            <h3 class="text-2xl font-serif font-bold text-navy mt-1">Rise of Conservatism &amp; Ideology Exit Ticket</h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full md:w-auto">
+            <div>
+              <label for="student-name" class="block text-xs font-bold uppercase text-slate-500 mb-1">Student Full Name</label>
+              <input type="text" id="student-name" oninput="updateReportHeader()" placeholder="Enter your name..." class="w-full sm:w-56 px-3 py-2 text-sm border border-slate-300 rounded-lg font-semibold text-navy focus:outline-none focus:ring-2 focus:ring-civicBlue">
+            </div>
+            <div>
+              <label for="student-period" class="block text-xs font-bold uppercase text-slate-500 mb-1">Class Period / Block</label>
+              <input type="text" id="student-period" oninput="updateReportHeader()" placeholder="e.g., Period 3" class="w-full sm:w-36 px-3 py-2 text-sm border border-slate-300 rounded-lg font-semibold text-navy focus:outline-none focus:ring-2 focus:ring-civicBlue">
+            </div>
+          </div>
+        </div>
+
+        <!-- Scorecards Summary Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 page-break-inside-avoid">
+          <!-- Card 1: Policy Sorter -->
+          <div class="p-5 rounded-xl border border-slate-200 bg-slate-50">
+            <div class="flex items-center justify-between text-xs font-bold uppercase text-slate-500">
+              <span>1. Policy Decoder Score</span>
+              <i class="fas fa-scale-balanced text-civicBlue"></i>
+            </div>
+            <div id="report-sorter-score" class="text-2xl font-extrabold text-navy mt-2">0 / 12 (0%)</div>
+            <div id="report-sorter-status" class="text-xs text-slate-500 mt-1">Not yet completed</div>
+          </div>
+
+          <!-- Card 2: Ideology Quiz -->
+          <div class="p-5 rounded-xl border border-slate-200 bg-slate-50">
+            <div class="flex items-center justify-between text-xs font-bold uppercase text-slate-500">
+              <span>2. Political Compass Result</span>
+              <i class="fas fa-compass text-crimson"></i>
+            </div>
+            <div id="report-quiz-result" class="text-xl font-extrabold text-navy mt-2">Not Taken Yet</div>
+            <div id="report-quiz-breakdown" class="text-xs text-slate-500 mt-1">Complete Tab 2 to see breakdown</div>
+          </div>
+
+          <!-- Card 3: WebQuest Checkpoints -->
+          <div class="p-5 rounded-xl border border-slate-200 bg-slate-50">
+            <div class="flex items-center justify-between text-xs font-bold uppercase text-slate-500">
+              <span>3. WebQuest Checkpoints</span>
+              <i class="fas fa-magnifying-glass text-emerald-600"></i>
+            </div>
+            <div id="report-wq-mc-score" class="text-2xl font-extrabold text-navy mt-2">0 / 5 Correct</div>
+            <div id="report-wq-status" class="text-xs text-slate-500 mt-1">0 of 5 reflections written</div>
+          </div>
+        </div>
+
+        <!-- WebQuest Short-Answer Reflections Transcript -->
+        <div class="space-y-4">
+          <h4 class="text-base font-bold uppercase tracking-wider text-navy border-b border-slate-200 pb-2">
+            Part 3 WebQuest Written Reflections
+          </h4>
+
+          <div class="space-y-4 text-sm">
+            <div class="p-4 rounded-xl border border-slate-200 page-break-inside-avoid">
+              <div class="font-bold text-navy text-xs uppercase tracking-wider text-crimson mb-1">Stop 1: Erosion of Trust ("Big Government's Spectacular Fails")</div>
+              <div class="text-xs text-slate-500 mb-2">Prompt: Why did 1960s/1970s scandals and crises help the Conservative movement even when Republicans were involved?</div>
+              <p id="report-ref-1" class="text-slate-800 italic bg-slate-50 p-3 rounded-lg border border-slate-100">No response entered yet.</p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-slate-200 page-break-inside-avoid">
+              <div class="font-bold text-navy text-xs uppercase tracking-wider text-civicBlue mb-1">Stop 2: Demographic Shifts &amp; "The Me Decade"</div>
+              <div class="text-xs text-slate-500 mb-2">Prompt: How did moving from northern cities to the suburbs change voters' political priorities in the 1970s?</div>
+              <p id="report-ref-2" class="text-slate-800 italic bg-slate-50 p-3 rounded-lg border border-slate-100">No response entered yet.</p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-slate-200 page-break-inside-avoid">
+              <div class="font-bold text-navy text-xs uppercase tracking-wider text-crimson mb-1">Stop 3: Backlash Against Great Society &amp; Cultural Change</div>
+              <div class="text-xs text-slate-500 mb-2">Prompt: Why did conservatives argue that Great Society welfare programs hurt rather than helped American society?</div>
+              <p id="report-ref-3" class="text-slate-800 italic bg-slate-50 p-3 rounded-lg border border-slate-100">No response entered yet.</p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-slate-200 page-break-inside-avoid">
+              <div class="font-bold text-navy text-xs uppercase tracking-wider text-civicBlue mb-1">Stop 4: Building the "New Right" Coalition</div>
+              <div class="text-xs text-slate-500 mb-2">Prompt: Why is the New Right described as a "conglomerate" (coalition) of different groups rather than a single-issue movement?</div>
+              <p id="report-ref-4" class="text-slate-800 italic bg-slate-50 p-3 rounded-lg border border-slate-100">No response entered yet.</p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-slate-200 page-break-inside-avoid">
+              <div class="font-bold text-navy text-xs uppercase tracking-wider text-emerald-700 mb-1">Stop 5: Election of 1980 &amp; Reagan's Inaugural Philosophy</div>
+              <div class="text-xs text-slate-500 mb-2">Prompt: How did Reagan's 1981 message ("Government is NOT the solution... government is the problem") reverse the 1940s–1960s consensus?</div>
+              <p id="report-ref-5" class="text-slate-800 italic bg-slate-50 p-3 rounded-lg border border-slate-100">No response entered yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-4 mt-12 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+      <span>U.S. History Interactive Curriculum • Unit 1: The Conservative 80s</span>
+      <span>Progress automatically saved in your current browser session</span>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT APPLICATION LOGIC                                          -->
+  <!-- ===================================================================== -->
+  <script>
+    // ---------------------------------------------------------------------
+    // 1. DATA DEFINITIONS (Strictly grounded in classroom notes)
+    // ---------------------------------------------------------------------
+    const IDEOLOGY_ISSUES = [
+      {
+        issue: "Size & Role of Government",
+        category: "gov",
+        liberal: "Strong federal government to solve social issues and protect rights.",
+        conservative: "Limited federal government; favor states' rights and personal liberty."
+      },
+      {
+        issue: "Economy & Free Market",
+        category: "econ",
+        liberal: "Government regulations are necessary to protect workers and consumers.",
+        conservative: "Free markets and deregulation drive growth and efficiency best."
+      },
+      {
+        issue: "Taxes",
+        category: "econ",
+        liberal: "Higher, progressive taxes, especially on corporations and wealthy.",
+        conservative: "Lower taxes across all brackets to spur business investment."
+      },
+      {
+        issue: "Social Safety Net",
+        category: "econ",
+        liberal: "Government welfare programs are essential to help low-income families.",
+        conservative: "Welfare can create dependency; emphasize charity and personal responsibility."
+      },
+      {
+        issue: "Healthcare",
+        category: "econ",
+        liberal: "Government-guaranteed universal healthcare or expanded public options.",
+        conservative: "Free-market healthcare competition and private insurance choices."
+      },
+      {
+        issue: "Environment",
+        category: "social",
+        liberal: "Strict regulations and government spending to combat climate change.",
+        conservative: "Balance conservation with domestic energy production and business growth."
+      },
+      {
+        issue: "Gun Control",
+        category: "social",
+        liberal: "Stronger federal restrictions on firearm sales and assault weapons.",
+        conservative: "Protect 2nd Amendment rights against federal government infringement."
+      },
+      {
+        issue: "Immigration",
+        category: "social",
+        liberal: "Pathways to legal status and focus on humanitarian protections.",
+        conservative: "Strong border enforcement and strict adherence to legal immigration."
+      },
+      {
+        issue: "Judiciary & Constitution",
+        category: "gov",
+        liberal: "\"Living Constitution\" that evolves with modern societal needs.",
+        conservative: "\"Originalism\" interpreting the text strictly based on original intent."
+      },
+      {
+        issue: "Social & Cultural Values",
+        category: "social",
+        liberal: "Secular government, rapid social change, and expanded civil rights.",
+        conservative: "Preservation of traditional family structures, religion, and social values."
+      },
+      {
+        issue: "Criminal Justice",
+        category: "gov",
+        liberal: "Systemic reform, addressing root causes, and rehabilitation.",
+        conservative: "Strict enforcement of \"law and order,\" deterrence, and police support."
+      },
+      {
+        issue: "Education",
+        category: "gov",
+        liberal: "Increased federal funding for public schools and public college aid.",
+        conservative: "School choice, school vouchers, and local school board control."
+      }
+    ];
+
+    const POLICY_SCENARIOS = [
+      {
+        topic: "Taxes",
+        prompt: "Passing a law that lowers federal income tax rates across all brackets to encourage corporations and individuals to invest in businesses.",
+        answer: "Conservative",
+        explanation: "Conservatives favor lower taxes across all brackets to spur business investment and economic growth, whereas Liberals favor higher progressive taxes on corporations and the wealthy."
+      },
+      {
+        topic: "Gun Control",
+        prompt: "Enacting stronger federal restrictions on firearm sales, background checks, and semi-automatic assault weapons.",
+        answer: "Liberal",
+        explanation: "Liberals support stronger federal restrictions on firearm sales and assault weapons; Conservatives prioritize protecting 2nd Amendment rights from federal infringement."
+      },
+      {
+        topic: "Education",
+        prompt: "Creating state school voucher programs that allow parents to use public education funds to send their children to private or religious schools.",
+        answer: "Conservative",
+        explanation: "School choice, school vouchers, and local school board control are core Conservative education positions."
+      },
+      {
+        topic: "Judiciary & Constitution",
+        prompt: "Appointing Supreme Court justices who view the Constitution as a 'Living Document' whose meaning should evolve to meet modern societal needs.",
+        answer: "Liberal",
+        explanation: "Liberals favor a 'Living Constitution' approach, while Conservatives favor 'Originalism' (interpreting the text strictly based on original intent)."
+      },
+      {
+        topic: "Economy & Free Market",
+        prompt: "Expanding federal EPA and labor regulations on factories to ensure corporations protect workers and consumers from unsafe practices.",
+        answer: "Liberal",
+        explanation: "Liberals believe government regulations are necessary to protect workers and consumers, whereas Conservatives believe free markets and deregulation drive efficiency best."
+      },
+      {
+        topic: "Social Safety Net",
+        prompt: "Reforming federal welfare programs by adding strict work requirements and encouraging private charities and personal responsibility instead of long-term government aid.",
+        answer: "Conservative",
+        explanation: "Conservatives argue government welfare can create dependency and emphasize charity and personal responsibility."
+      },
+      {
+        topic: "Healthcare",
+        prompt: "Creating a government-guaranteed universal healthcare program or expanding public government health insurance options for all citizens.",
+        answer: "Liberal",
+        explanation: "Liberals advocate for government-guaranteed universal healthcare or public options, while Conservatives prefer free-market healthcare competition and private insurance."
+      },
+      {
+        topic: "Criminal Justice",
+        prompt: "Increasing funding for police departments and passing mandatory minimum sentences to enforce strict 'law and order' and deter crime.",
+        answer: "Conservative",
+        explanation: "Strict enforcement of 'law and order,' deterrence, and police support reflect Conservative criminal justice policy."
+      },
+      {
+        topic: "Environment",
+        prompt: "Approving new domestic oil and natural gas drilling leases on federal lands to boost energy production and business growth.",
+        answer: "Conservative",
+        explanation: "Conservatives seek to balance conservation with domestic energy production and business growth, whereas Liberals favor strict regulations to combat climate change."
+      },
+      {
+        topic: "Immigration",
+        prompt: "Establishing legal pathways to citizenship for undocumented residents while expanding humanitarian protections for asylum seekers.",
+        answer: "Liberal",
+        explanation: "Pathways to legal status and humanitarian protections align with Liberal immigration views; Conservatives emphasize strong border enforcement."
+      },
+      {
+        topic: "Size & Role of Government",
+        prompt: "Transferring federal program authority back to individual state governments to limit Washington's power and protect states' rights.",
+        answer: "Conservative",
+        explanation: "Conservatives favor a limited federal government, states' rights, and personal liberty."
+      },
+      {
+        topic: "Social & Cultural Values",
+        prompt: "Passing federal legislation to rapidly expand civil rights protections and maintain a strictly secular public government.",
+        answer: "Liberal",
+        explanation: "Secular government, rapid social change, and expanded civil rights are hallmark Liberal social and cultural positions."
+      }
+    ];
+
+    // 12 Neutral Self-Assessment Quiz Questions mapped to the 12 Issues
+    // Scores: -2 (Strong Liberal), -1 (Moderate Liberal), +1 (Moderate Conservative), +2 (Strong Conservative)
+    const QUIZ_QUESTIONS = [
+      {
+        issue: "Size & Role of Government",
+        category: "gov",
+        question: "When major national problems arise, what role should the federal government play?",
+        options: [
+          { text: "A strong federal government should actively step in to solve social issues and protect citizens' rights.", score: -2 },
+          { text: "The federal government should set national standards, while leaving room for local input.", score: -1 },
+          { text: "State and local governments should handle most issues, with federal help only when necessary.", score: 1 },
+          { text: "Federal power should be strictly limited to protect states' rights and individual liberty.", score: 2 }
+        ]
+      },
+      {
+        issue: "Economy & Free Market",
+        category: "econ",
+        question: "What is the best way to ensure a healthy, fair economy?",
+        options: [
+          { text: "Strong government regulations are essential to protect workers, consumers, and fair wages.", score: -2 },
+          { text: "Targeted regulations are needed to prevent corporate abuses while allowing businesses to grow.", score: -1 },
+          { text: "Reducing unnecessary regulations helps businesses grow, though basic safety rules should remain.", score: 1 },
+          { text: "Free markets and deregulation drive economic growth and efficiency far better than government rules.", score: 2 }
+        ]
+      },
+      {
+        issue: "Taxes",
+        category: "econ",
+        question: "How should the federal tax system be structured?",
+        options: [
+          { text: "Higher, progressive taxes on corporations and wealthy earners should fund public programs.", score: -2 },
+          { text: "Wealthier households should pay a somewhat higher rate to support key public services.", score: -1 },
+          { text: "Keep taxes relatively low for both families and businesses to encourage economic activity.", score: 1 },
+          { text: "Cut taxes across all income brackets so individuals keep their money and businesses invest.", score: 2 }
+        ]
+      },
+      {
+        issue: "Social Safety Net",
+        category: "econ",
+        question: "What is the most effective way to help low-income Americans?",
+        options: [
+          { text: "Robust government welfare and assistance programs are essential to lift families out of poverty.", score: -2 },
+          { text: "Government aid should be readily available, paired with job training programs.", score: -1 },
+          { text: "Temporary assistance is okay, but charities and community groups often help people better.", score: 1 },
+          { text: "Long-term government welfare creates dependency; we must emphasize personal responsibility and private charity.", score: 2 }
+        ]
+      },
+      {
+        issue: "Healthcare",
+        category: "econ",
+        question: "How should healthcare be provided and funded in the United States?",
+        options: [
+          { text: "The federal government should guarantee universal healthcare coverage for every citizen.", score: -2 },
+          { text: "Expand public government insurance options alongside private insurance plans.", score: -1 },
+          { text: "Keep healthcare primarily private, with targeted subsidies for low-income or elderly citizens.", score: 1 },
+          { text: "Rely on free-market competition and private insurance choices rather than government programs.", score: 2 }
+        ]
+      },
+      {
+        issue: "Environment",
+        category: "social",
+        question: "How should the nation balance environmental protection and energy needs?",
+        options: [
+          { text: "Enact strict environmental regulations and major government spending to combat climate change.", score: -2 },
+          { text: "Invest in renewable energy and pollution limits while gradually transitioning away from fossil fuels.", score: -1 },
+          { text: "Protect national parks and clean air without hurting domestic energy jobs.", score: 1 },
+          { text: "Prioritize domestic energy production and business growth alongside practical conservation.", score: 2 }
+        ]
+      },
+      {
+        issue: "Gun Control",
+        category: "social",
+        question: "What should federal policy be regarding firearm ownership?",
+        options: [
+          { text: "Pass strong federal restrictions on firearm sales and ban semi-automatic assault weapons.", score: -2 },
+          { text: "Require universal background checks and waiting periods while allowing hunting/self-defense guns.", score: -1 },
+          { text: "Enforce existing laws against criminals without restricting law-abiding gun owners.", score: 1 },
+          { text: "Strictly protect 2nd Amendment rights against any federal government infringement.", score: 2 }
+        ]
+      },
+      {
+        issue: "Immigration",
+        category: "social",
+        question: "What should be the top priority of U.S. immigration policy?",
+        options: [
+          { text: "Create clear pathways to legal status and prioritize humanitarian protections for immigrants.", score: -2 },
+          { text: "Balance border security with legal pathways for long-term undocumented residents.", score: -1 },
+          { text: "Strengthen border enforcement first before considering any changes to legal immigration.", score: 1 },
+          { text: "Focus on strict border enforcement and strict adherence to legal immigration rules.", score: 2 }
+        ]
+      },
+      {
+        issue: "Judiciary & Constitution",
+        category: "gov",
+        question: "How should Supreme Court justices interpret the U.S. Constitution?",
+        options: [
+          { text: "As a 'Living Constitution' whose principles must evolve to address modern societal needs.", score: -2 },
+          { text: "Consider both historical text and how modern society has changed over time.", score: -1 },
+          { text: "Stick closely to the written text unless Congress passes a formal constitutional amendment.", score: 1 },
+          { text: "Through 'Originalism'—interpreting the text strictly based on the Founders' original intent.", score: 2 }
+        ]
+      },
+      {
+        issue: "Social & Cultural Values",
+        category: "social",
+        question: "How should government interact with religion and social traditions?",
+        options: [
+          { text: "Maintain a strictly secular government while promoting rapid social change and expanded civil rights.", score: -2 },
+          { text: "Protect civil rights for all groups while keeping church and state clearly separate.", score: -1 },
+          { text: "Respect religious expression in public life and value traditional community institutions.", score: 1 },
+          { text: "Actively preserve traditional family structures, religious heritage, and established social values.", score: 2 }
+        ]
+      },
+      {
+        issue: "Criminal Justice",
+        category: "gov",
+        question: "What approach works best to reduce crime and maintain public safety?",
+        options: [
+          { text: "Systemic justice reform, addressing root social causes of crime, and offender rehabilitation.", score: -2 },
+          { text: "Combine community policing reforms with rehabilitation and mental health programs.", score: -1 },
+          { text: "Support local police departments and ensure fair, consistent punishments for offenders.", score: 1 },
+          { text: "Strict enforcement of 'law and order,' strong deterrence, and full backing for police.", score: 2 }
+        ]
+      },
+      {
+        issue: "Education",
+        category: "gov",
+        question: "How can K–12 education be improved across the United States?",
+        options: [
+          { text: "Significantly increase federal funding for public schools and public college financial aid.", score: -2 },
+          { text: "Invest more in public schools and teacher pay while setting national learning standards.", score: -1 },
+          { text: "Give local school boards and parents more control over curriculum and school options.", score: 1 },
+          { text: "Expand school choice, school vouchers, and local school board control over federal mandates.", score: 2 }
+        ]
+      }
+    ];
+
+    const CRISIS_DOSSIERS = [
+      {
+        title: "The Vietnam War (1960s–1975)",
+        badge: "Trust Impact: Severe",
+        desc: "Years of escalating U.S. troop commitments, mounting casualties, and government credibility gaps led many Americans to question whether Washington leaders could manage foreign conflicts or be trusted to tell the public the truth."
+      },
+      {
+        title: "1960s Urban Riots & Counterculture",
+        badge: "Trust Impact: High",
+        desc: "Widespread urban unrest in major cities alongside the anti-war counterculture movement left many middle-class Americans feeling that traditional social order and public safety were breaking down."
+      },
+      {
+        title: "The Watergate Scandal (1972–1974)",
+        badge: "Trust Impact: Historic Low",
+        desc: "Although initiated by Republican President Richard Nixon's administration, the Watergate break-in and cover-up deeply damaged public confidence in the presidency and large federal institutions across party lines."
+      },
+      {
+        title: "1970s Oil Crisis & Iran Hostage Crisis",
+        badge: "Trust Impact: Severe",
+        desc: "Long gas lines, soaring inflation during the Oil Crisis, and the 444-day Iran Hostage Crisis under President Carter convinced millions of voters that the federal government appeared weak abroad and helpless at home."
+      }
+    ];
+
+    // ---------------------------------------------------------------------
+    // 2. APPLICATION STATE
+    // ---------------------------------------------------------------------
+    const appState = {
+      currentTab: 'tab1',
+      matrixView: 'table',
+      flashcardIndex: 0,
+      sorterIndex: 0,
+      sorterScore: 0,
+      sorterAnswered: 0,
+      sorterComplete: false,
+      quizAnswers: {}, // { questionIndex: score }
+      quizSubmitted: false,
+      quizResultSummary: null,
+      wqCurrentStop: 1,
+      wqMC: { 1: null, 2: null, 3: null, 4: null, 5: null }, // true/false
+      wqReflections: { 1: '', 2: '', 3: '', 4: '', 5: '' },
+      studentName: '',
+      studentPeriod: ''
+    };
+
+    // ---------------------------------------------------------------------
+    // 3. INITIALIZATION & NAVIGATION
+    // ---------------------------------------------------------------------
+    window.onload = function () {
+      renderIssuesTable(IDEOLOGY_ISSUES);
+      renderFlashcard();
+      loadSorterQuestion();
+      renderQuizQuestions();
+      updateAllProgress();
+    };
+
+    function switchTab(tabId) {
+      appState.currentTab = tabId;
+
+      // Update Tab Panels
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+
+      // Update Navigation Buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-white', 'text-navy', 'shadow-sm');
+        btn.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+      });
+
+      const activeBtn = document.getElementById('nav-' + tabId);
+      activeBtn.classList.add('active', 'bg-white', 'text-navy', 'shadow-sm');
+      activeBtn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-800');
+
+      if (tabId === 'tab4') {
+        refreshExitTicketReport();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast-notification');
+      const icon = document.getElementById('toast-icon');
+      const msg = document.getElementById('toast-message');
+
+      msg.textContent = message;
+      if (type === 'warning') {
+        icon.className = 'fas fa-exclamation-circle text-amber-400 text-lg';
+      } else {
+        icon.className = 'fas fa-check-circle text-emerald-400 text-lg';
+      }
+
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3200);
+    }
+
+    // ---------------------------------------------------------------------
+    // 4. TAB 1: IDEOLOGY MATRIX & POLICY DECODER
+    // ---------------------------------------------------------------------
+    function renderIssuesTable(issuesList) {
+      const tbody = document.getElementById('issues-table-body');
+      tbody.innerHTML = '';
+
+      if (issuesList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" class="py-8 text-center text-slate-400">No matching policy issues found.</td></tr>`;
+        return;
+      }
+
+      issuesList.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/80 transition';
+        tr.innerHTML = `
+          <td class="py-4 px-5 font-bold text-navy align-top">${item.issue}</td>
+          <td class="py-4 px-5 text-slate-700 border-l border-slate-200 bg-blue-50/15 align-top">${item.liberal}</td>
+          <td class="py-4 px-5 text-slate-700 border-l border-slate-200 bg-red-50/15 align-top">${item.conservative}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterIssues() {
+      const query = document.getElementById('issue-search').value.toLowerCase().trim();
+      const filtered = IDEOLOGY_ISSUES.filter(item =>
+        item.issue.toLowerCase().includes(query) ||
+        item.liberal.toLowerCase().includes(query) ||
+        item.conservative.toLowerCase().includes(query)
+      );
+      renderIssuesTable(filtered);
+    }
+
+    function setMatrixView(mode) {
+      appState.matrixView = mode;
+      const tableBtn = document.getElementById('btn-view-table');
+      const cardsBtn = document.getElementById('btn-view-cards');
+      const tableView = document.getElementById('matrix-table-view');
+      const cardsView = document.getElementById('matrix-cards-view');
+
+      if (mode === 'table') {
+        tableBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-md bg-navy text-white transition';
+        cardsBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-navy transition';
+        tableView.classList.remove('hidden');
+        cardsView.classList.add('hidden');
+      } else {
+        cardsBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-md bg-navy text-white transition';
+        tableBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-md text-slate-600 hover:text-navy transition';
+        cardsView.classList.remove('hidden');
+        tableView.classList.add('hidden');
+        renderFlashcard();
+      }
+    }
+
+    function renderFlashcard() {
+      const item = IDEOLOGY_ISSUES[appState.flashcardIndex];
+      const cardEl = document.getElementById('flashcard-element');
+      cardEl.classList.remove('flipped');
+
+      document.getElementById('flashcard-counter').textContent = `Issue ${appState.flashcardIndex + 1} of ${IDEOLOGY_ISSUES.length}`;
+      document.getElementById('fc-issue-front').textContent = item.issue;
+      document.getElementById('fc-issue-back').textContent = item.issue;
+      document.getElementById('fc-liberal-text').textContent = item.liberal;
+      document.getElementById('fc-conservative-text').textContent = item.conservative;
+
+      // Dots
+      const dotsContainer = document.getElementById('flashcard-dots');
+      dotsContainer.innerHTML = '';
+      IDEOLOGY_ISSUES.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.onclick = () => { appState.flashcardIndex = idx; renderFlashcard(); };
+        dot.className = `w-2 h-2 rounded-full transition ${idx === appState.flashcardIndex ? 'bg-navy w-4' : 'bg-slate-300'}`;
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function flipFlashcard() {
+      document.getElementById('flashcard-element').classList.toggle('flipped');
+    }
+
+    function nextFlashcard() {
+      appState.flashcardIndex = (appState.flashcardIndex + 1) % IDEOLOGY_ISSUES.length;
+      renderFlashcard();
+    }
+
+    function prevFlashcard() {
+      appState.flashcardIndex = (appState.flashcardIndex - 1 + IDEOLOGY_ISSUES.length) % IDEOLOGY_ISSUES.length;
+      renderFlashcard();
+    }
+
+    // Policy Decoder Game Logic
+    function loadSorterQuestion() {
+      const current = POLICY_SCENARIOS[appState.sorterIndex];
+      document.getElementById('sorter-q-number').textContent = `Scenario ${appState.sorterIndex + 1} of ${POLICY_SCENARIOS.length}`;
+      document.getElementById('sorter-category-badge').textContent = `Topic: ${current.topic}`;
+      document.getElementById('sorter-prompt').textContent = `"${current.prompt}"`;
+
+      document.getElementById('sorter-buttons').classList.remove('hidden');
+      document.getElementById('sorter-feedback').classList.add('hidden');
+      document.getElementById('sorter-progress-bar').style.width = `${(appState.sorterIndex / POLICY_SCENARIOS.length) * 100}%`;
+    }
+
+    function submitSorterChoice(choice) {
+      const current = POLICY_SCENARIOS[appState.sorterIndex];
+      const isCorrect = (choice === current.answer);
+
+      if (isCorrect) {
+        appState.sorterScore++;
+      }
+      appState.sorterAnswered++;
+      document.getElementById('sorter-score').textContent = appState.sorterScore;
+
+      // Hide choice buttons, show feedback
+      document.getElementById('sorter-buttons').classList.add('hidden');
+      const fbBox = document.getElementById('sorter-feedback');
+      const fbIcon = document.getElementById('sorter-fb-icon');
+      const fbTitle = document.getElementById('sorter-fb-title');
+      const fbText = document.getElementById('sorter-fb-text');
+
+      fbBox.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'text-emerald-900', 'bg-red-50', 'border-red-300', 'text-red-900');
+
+      if (isCorrect) {
+        fbBox.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-900');
+        fbIcon.className = 'fas fa-check-circle text-emerald-600 text-xl mt-0.5';
+        fbTitle.textContent = `Correct! That is a ${current.answer} Policy.`;
+      } else {
+        fbBox.classList.add('bg-red-50', 'border-red-300', 'text-red-900');
+        fbIcon.className = 'fas fa-times-circle text-crimson text-xl mt-0.5';
+        fbTitle.textContent = `Not quite — that is actually a ${current.answer} Policy.`;
+      }
+
+      fbText.textContent = current.explanation;
+      updateAllProgress();
+    }
+
+    function nextSorterQuestion() {
+      if (appState.sorterIndex + 1 < POLICY_SCENARIOS.length) {
+        appState.sorterIndex++;
+        loadSorterQuestion();
+      } else {
+        appState.sorterComplete = true;
+        document.getElementById('sorter-progress-bar').style.width = '100%';
+        document.getElementById('sorter-game-container').classList.add('hidden');
+        document.getElementById('sorter-complete-container').classList.remove('hidden');
+        document.getElementById('sorter-final-score').textContent = `${appState.sorterScore} / ${POLICY_SCENARIOS.length}`;
+        showToast('Policy Decoder completed and saved to your report!');
+        updateAllProgress();
+      }
+    }
+
+    function resetSorter() {
+      appState.sorterIndex = 0;
+      appState.sorterScore = 0;
+      appState.sorterAnswered = 0;
+      appState.sorterComplete = false;
+      document.getElementById('sorter-score').textContent = '0';
+      document.getElementById('sorter-complete-container').classList.add('hidden');
+      document.getElementById('sorter-game-container').classList.remove('hidden');
+      loadSorterQuestion();
+      updateAllProgress();
+    }
+
+    // ---------------------------------------------------------------------
+    // 5. TAB 2: WHERE DO YOU STAND? (POLITICAL IDEOLOGY QUIZ)
+    // ---------------------------------------------------------------------
+    function renderQuizQuestions() {
+      const container = document.getElementById('quiz-questions-wrapper');
+      container.innerHTML = '';
+
+      QUIZ_QUESTIONS.forEach((q, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm';
+
+        // Shuffle display order deterministically per question so labels aren't predictable
+        const indexedOptions = q.options.map((opt, oIdx) => ({ ...opt, origIdx: oIdx }));
+        if (qIdx % 2 === 1) {
+          indexedOptions.reverse();
+        }
+
+        let optionsHtml = '';
+        indexedOptions.forEach(opt => {
+          optionsHtml += `
+            <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-civicBlue hover:bg-blue-50/30 cursor-pointer transition">
+              <input type="radio" name="quiz_q_${qIdx}" value="${opt.score}" onchange="selectQuizOption(${qIdx}, ${opt.score})" class="mt-1 text-civicBlue focus:ring-civicBlue">
+              <span class="text-sm text-slate-700 leading-snug">${opt.text}</span>
+            </label>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+            <span>Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}</span>
+            <span class="text-civicBlue">${q.issue}</span>
+          </div>
+          <h3 class="text-base sm:text-lg font-bold text-navy mb-4">${q.question}</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            ${optionsHtml}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function selectQuizOption(qIdx, score) {
+      appState.quizAnswers[qIdx] = score;
+      const count = Object.keys(appState.quizAnswers).length;
+      document.getElementById('quiz-answered-count').textContent = count;
+    }
+
+    function calculateQuizResults() {
+      const answeredCount = Object.keys(appState.quizAnswers).length;
+      if (answeredCount < QUIZ_QUESTIONS.length) {
+        showToast(`Please answer all 12 questions first (${answeredCount}/12 answered).`, 'warning');
+        return;
+      }
+
+      let totalScore = 0;
+      let econScore = 0;
+      let socialScore = 0;
+      let govScore = 0;
+
+      QUIZ_QUESTIONS.forEach((q, idx) => {
+        const val = appState.quizAnswers[idx];
+        totalScore += val;
+        if (q.category === 'econ') econScore += val;
+        if (q.category === 'social') socialScore += val;
+        if (q.category === 'gov') govScore += val;
+      });
+
+      // Determine overall placement (-24 to +24)
+      let overallLabel = 'Centrist / Balanced Mix';
+      if (totalScore <= -13) overallLabel = 'Strongly Liberal';
+      else if (totalScore <= -5) overallLabel = 'Moderately Liberal';
+      else if (totalScore >= 13) overallLabel = 'Strongly Conservative';
+      else if (totalScore >= 5) overallLabel = 'Moderately Conservative';
+
+      const getCatLabel = (s) => {
+        if (s <= -5) return 'Strongly Liberal';
+        if (s <= -2) return 'Moderately Liberal';
+        if (s >= 5) return 'Strongly Conservative';
+        if (s >= 2) return 'Moderately Conservative';
+        return 'Centrist / Mixed';
+      };
+
+      const econLabel = getCatLabel(econScore);
+      const socialLabel = getCatLabel(socialScore);
+      const govLabel = getCatLabel(govScore);
+
+      appState.quizSubmitted = true;
+      appState.quizResultSummary = {
+        totalScore,
+        overallLabel,
+        econLabel,
+        socialLabel,
+        govLabel
+      };
+
+      // Update Results Panel UI
+      document.getElementById('quiz-result-label').textContent = overallLabel;
+      document.getElementById('cat-econ-label').textContent = econLabel;
+      document.getElementById('cat-social-label').textContent = socialLabel;
+      document.getElementById('cat-gov-label').textContent = govLabel;
+
+      // Map -24..+24 to 5%..95% on spectrum bar
+      const pct = Math.min(95, Math.max(5, ((totalScore + 24) / 48) * 100));
+      document.getElementById('quiz-spectrum-marker').style.left = `${pct}%`;
+
+      document.getElementById('quiz-results-panel').classList.remove('hidden');
+      document.getElementById('quiz-results-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      showToast('Political Ideology Profile calculated!');
+      updateAllProgress();
+    }
+
+    function retakeQuiz() {
+      appState.quizAnswers = {};
+      appState.quizSubmitted = false;
+      appState.quizResultSummary = null;
+      document.getElementById('quiz-answered-count').textContent = '0';
+      document.getElementById('quiz-results-panel').classList.add('hidden');
+      renderQuizQuestions();
+      updateAllProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ---------------------------------------------------------------------
+    // 6. TAB 3: 1970s CONSERVATIVE RESURGENCE WEBQUEST
+    // ---------------------------------------------------------------------
+    function showWebQuestStop(stopNum) {
+      appState.wqCurrentStop = stopNum;
+      document.querySelectorAll('.wq-stop-panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`wq-stop-${stopNum}`).classList.remove('hidden');
+
+      document.querySelectorAll('.wq-pill').forEach(pill => {
+        pill.classList.remove('active', 'border-2', 'border-navy', 'bg-navy', 'text-white');
+        pill.classList.add('border', 'border-slate-200', 'bg-slate-50', 'text-navy');
+      });
+
+      const activePill = document.getElementById(`wq-nav-${stopNum}`);
+      activePill.classList.add('active', 'border-2', 'border-navy', 'bg-navy', 'text-white');
+      activePill.classList.remove('border', 'border-slate-200', 'bg-slate-50', 'text-navy');
+    }
+
+    function inspectCrisis(index) {
+      const d = CRISIS_DOSSIERS[index];
+      document.getElementById('crisis-title').textContent = d.title;
+      document.getElementById('crisis-trust-badge').textContent = d.badge;
+      document.getElementById('crisis-desc').textContent = d.desc;
+    }
+
+    function checkWQMC(stopNum, correctVal, selectedVal) {
+      const fbEl = document.getElementById(`wq${stopNum}_mc_feedback`);
+      fbEl.classList.remove('hidden', 'text-emerald-600', 'text-crimson');
+
+      if (selectedVal === correctVal) {
+        appState.wqMC[stopNum] = true;
+        fbEl.classList.add('text-emerald-600');
+        fbEl.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Correct! Historical checkpoint verified.';
+      } else {
+        appState.wqMC[stopNum] = false;
+        fbEl.classList.add('text-crimson');
+        fbEl.innerHTML = '<i class="fas fa-times-circle mr-1"></i> Review the evidence dossier above and try again.';
+      }
+      updateAllProgress();
+    }
+
+    function saveWQReflection(stopNum, text) {
+      appState.wqReflections[stopNum] = text.trim();
+      updateAllProgress();
+    }
+
+    // ---------------------------------------------------------------------
+    // 7. PROGRESS TRACKING & TAB 4 EXIT TICKET REPORT
+    // ---------------------------------------------------------------------
+    function updateAllProgress() {
+      // Tab 1 completion: sorterComplete or answered all 12
+      const tab1Done = appState.sorterComplete || appState.sorterAnswered >= POLICY_SCENARIOS.length;
+      // Tab 2 completion: quizSubmitted
+      const tab2Done = appState.quizSubmitted;
+      // Tab 3 completion: count stops where MC is true OR reflection has text
+      let wqCompletedStops = 0;
+      for (let i = 1; i <= 5; i++) {
+        if (appState.wqMC[i] === true || appState.wqReflections[i].length > 5) {
+          wqCompletedStops++;
+        }
+      }
+      document.getElementById('wq-stops-count').textContent = wqCompletedStops;
+      const tab3Done = wqCompletedStops === 5;
+
+      // Update Header Badges
+      updateBadge('badge-tab1', tab1Done, 'Policy Sorter');
+      updateBadge('badge-tab2', tab2Done, 'Ideology Quiz');
+      updateBadge('badge-tab3', tab3Done, '70s WebQuest');
+
+      // Overall percentage calculation
+      const t1Pct = (appState.sorterAnswered / POLICY_SCENARIOS.length) * 33.3;
+      const t2Pct = tab2Done ? 33.3 : 0;
+      const t3Pct = (wqCompletedStops / 5) * 33.4;
+      const totalPct = Math.round(t1Pct + t2Pct + t3Pct);
+
+      document.getElementById('overall-progress-bar').style.width = `${totalPct}%`;
+      document.getElementById('overall-progress-text').textContent = `${totalPct}%`;
+    }
+
+    function updateBadge(id, isDone, label) {
+      const el = document.getElementById(id);
+      if (isDone) {
+        el.className = 'text-emerald-400 font-semibold flex items-center gap-1.5';
+        el.innerHTML = `<i class="fas fa-check-circle"></i> ${label}`;
+      } else {
+        el.className = 'text-slate-400 flex items-center gap-1.5';
+        el.innerHTML = `<i class="far fa-circle"></i> ${label}`;
+      }
+    }
+
+    function updateReportHeader() {
+      appState.studentName = document.getElementById('student-name').value.trim();
+      appState.studentPeriod = document.getElementById('student-period').value.trim();
+    }
+
+    function refreshExitTicketReport() {
+      // 1. Policy Sorter
+      const pct = Math.round((appState.sorterScore / POLICY_SCENARIOS.length) * 100);
+      document.getElementById('report-sorter-score').textContent = `${appState.sorterScore} / ${POLICY_SCENARIOS.length} (${pct}%)`;
+      document.getElementById('report-sorter-status').textContent = appState.sorterComplete
+        ? 'Completed all 12 policy scenarios'
+        : `${appState.sorterAnswered} of 12 scenarios attempted`;
+
+      // 2. Ideology Quiz
+      if (appState.quizSubmitted && appState.quizResultSummary) {
+        document.getElementById('report-quiz-result').textContent = appState.quizResultSummary.overallLabel;
+        document.getElementById('report-quiz-breakdown').textContent =
+          `Econ: ${appState.quizResultSummary.econLabel} | Social: ${appState.quizResultSummary.socialLabel} | Gov: ${appState.quizResultSummary.govLabel}`;
+      } else {
+        document.getElementById('report-quiz-result').textContent = 'Not Taken Yet';
+        document.getElementById('report-quiz-breakdown').textContent = 'Complete Tab 2 to see breakdown';
+      }
+
+      // 3. WebQuest Checkpoints & Reflections
+      let correctMC = 0;
+      let writtenRefs = 0;
+      for (let i = 1; i <= 5; i++) {
+        if (appState.wqMC[i] === true) correctMC++;
+        const refText = appState.wqReflections[i];
+        const targetEl = document.getElementById(`report-ref-${i}`);
+        if (refText && refText.length > 0) {
+          writtenRefs++;
+          targetEl.textContent = refText;
+          targetEl.classList.remove('italic', 'text-slate-400');
+        } else {
+          targetEl.textContent = 'No response entered yet.';
+          targetEl.classList.add('italic', 'text-slate-400');
+        }
+      }
+      document.getElementById('report-wq-mc-score').textContent = `${correctMC} / 5 Correct`;
+      document.getElementById('report-wq-status').textContent = `${writtenRefs} of 5 reflections written`;
+    }
+
+    function copyReportToClipboard() {
+      refreshExitTicketReport();
+      const name = appState.studentName || 'Not Entered';
+      const period = appState.studentPeriod || 'Not Entered';
+      const quizStr = appState.quizSubmitted && appState.quizResultSummary
+        ? `${appState.quizResultSummary.overallLabel} (Econ: ${appState.quizResultSummary.econLabel}, Social: ${appState.quizResultSummary.socialLabel}, Gov: ${appState.quizResultSummary.govLabel})`
+        : 'Not Completed';
+
+      let correctMC = 0;
+      for (let i = 1; i <= 5; i++) {
+        if (appState.wqMC[i] === true) correctMC++;
+      }
+
+      const summaryText = `U.S. HISTORY - UNIT 1: RISE OF CONSERVATISM & THE 1980s
+Student Name: ${name} | Period: ${period}
+------------------------------------------------------------
+1. POLICY DECODER SCORE: ${appState.sorterScore} / 12
+2. POLITICAL IDEOLOGY QUIZ: ${quizStr}
+3. 1970s WEBQUEST CHECKPOINTS: ${correctMC} / 5 Correct
+
+WEBQUEST REFLECTIONS:
+- Stop 1 (Erosion of Trust): ${appState.wqReflections[1] || '[No response]'}
+- Stop 2 (Demographics & Me Decade): ${appState.wqReflections[2] || '[No response]'}
+- Stop 3 (Cultural & Great Society Backlash): ${appState.wqReflections[3] || '[No response]'}
+- Stop 4 (The New Right Coalition): ${appState.wqReflections[4] || '[No response]'}
+- Stop 5 (Election of 1980 & Reagan): ${appState.wqReflections[5] || '[No response]'}`;
+
+      // Reliable iFrame-safe clipboard copy
+      const tempTextarea = document.createElement('textarea');
+      tempTextarea.value = summaryText;
+      document.body.appendChild(tempTextarea);
+      tempTextarea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Report copied to clipboard! Ready to paste into Google Classroom or Canvas.');
+      } catch (err) {
+        showToast('Unable to copy automatically. Please use Print / Save as PDF.', 'warning');
+      }
+      document.body.removeChild(tempTextarea);
+    }
+  </script>
+</body>
+</html>
